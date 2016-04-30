@@ -5,6 +5,11 @@ public abstract class Price {
     abstract int getPriceCode();
 
     abstract double amountFor(int daysRented);
+
+    public int getFrequentRenterPoints(int daysRented) {
+        // add bonus for a two day new release rental
+        return 1;
+    }
 }
 
 class ChildrensPrice extends Price {
@@ -21,6 +26,9 @@ class ChildrensPrice extends Price {
     }
 }
 class NewReleasePrice extends Price {
+    public int getFrequentRenterPoints(int daysRented) {
+        return (daysRented > 1) ? 2: 1;
+    }
     double amountFor(int daysRented){
         return daysRented * 3;
     }
